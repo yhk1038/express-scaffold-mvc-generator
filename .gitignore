@@ -1,0 +1,9 @@
+.DS_Store
+.idea
+controllers/*
+views/*
+models/*
+core/*
+routes/*
+node_modules/*
+package-lock.json
