@@ -166,10 +166,10 @@ $ express:scaffold -h
 ```
 
 ## Contribute
-Contribute and Pull-Request and Proposal is always welcome.
+Contribute and Pull-Request and Proposal are always welcome.
 
 ## Contact
-You can always contact me on [Email yhkks1038@gmailcom](mailto://yhkks1038@gmailcom) or Create Issue on this Repository.
+You can always contact me on [Email yhkks1038@gmail.com](mailto://yhkks1038@gmail.com) or Create Issue on this Repository.
 
 
 ## MIT
