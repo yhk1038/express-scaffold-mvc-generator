@@ -20,6 +20,7 @@ let scaffold = function(res) {
     log('3. Check pkg project rootpath ~>', pkgpath);
     log('4. Check argumented resource name ~>', resource);
 
+
     // validate resource
     if (!resource) {
       throw console.error("resource not defined (argv[2] : "+resource+")");
@@ -42,6 +43,16 @@ let scaffold = function(res) {
         cmd.run(`cp -r ${pkgpath}/base/core ${rootpath}/core`);
       }
     });
+
+    let routerpath = path.join(rootpath, 'routes', 'routes.js');
+    let view_dirpath = path.join(rootpath, 'views');
+    fs.access(routerpath, (err) => {
+      if(err && (err.errno === -2 || err.errno === 34)) {
+        makefile(routerpath, require('./base/literals/routes-file'), invoke_callback);
+      };
+    });
+    fs.mkdirSync(view_dirpath);
+
 
 
 
@@ -115,12 +126,7 @@ let scaffold = function(res) {
 
     // Generate Routes
 
-    let routerpath = path.join(rootpath, 'routes', 'routes.js');
-
     fs.open(routerpath, 'r+', function(err, fd) {
-      if(err && (err.errno === -2 || err.errno === 34)) {
-        makefile(routerpath, require('./base/literals/routes-file'), invoke_callback);
-      };
       fs.readFile(routerpath, 'utf8', function(err, data) {
 
         let splitByLine = data.split(/\n/);
