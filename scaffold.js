@@ -51,7 +51,9 @@ let scaffold = function(res) {
         makefile(routerpath, require('./base/literals/routes-file'), invoke_callback);
       };
     });
-    fs.mkdirSync(view_dirpath);
+    fs.mkdir(view_dirpath, (err) => {
+        log(err);
+    });
 
 
 
