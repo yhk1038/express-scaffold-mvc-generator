@@ -27,7 +27,7 @@ invoke          views/posts/components/item.ejs
 
 ```
 
-#### It generates Router & M & V & C about resource
+### It generates Router & M & V & C about resource
 e.g. `$ express:scaffold posts`
 
 **[Router] routes/routes.js**

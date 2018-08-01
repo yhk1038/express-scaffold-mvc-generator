@@ -5,7 +5,7 @@ Makefile
 docs/
 examples/
 support/
-test/test.js
+test/
 
 controllers/
 views/
