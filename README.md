@@ -20,6 +20,7 @@ app.use(expressLayouts);
 
 ```
 $ npm install express-scaffold-mvc-generator -g --save && npm link
+$ express:scaffold install
 ```
 
 Note the `-g` and `--save` options. You can use cli interface when it was global installed only.

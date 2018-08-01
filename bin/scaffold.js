@@ -8,7 +8,6 @@ commander
     .action(function(resource){
         if (resource === 'install') {
             cmd.run('npm install express-scaffold-mvc-base --save');
-            cmd.run('npm link');
         } else {
             require('../scaffold')(resource);
         }
