@@ -115,7 +115,7 @@ let scaffold = function(res) {
   function makeViewFile(file) {
     const view_filename = `${file}.ejs`;
     const view_filepath = path.join(rootpath, 'views', resource, view_filename);
-    const view_literal = '';
+    const view_literal = `<h2>${resource}/${view_filename}</h2>`;
     log(`>. Check "view_filepath" ~>`, `(${view_filename})`, view_filepath);
     makefile(view_filepath, view_literal, invoke_callback);
   }

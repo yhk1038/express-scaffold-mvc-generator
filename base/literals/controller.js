@@ -23,7 +23,7 @@ class ${name}Controller extends Controller {
     __.title = __.klass.controllers_name;
     
     // 다음과 같이 __.klass 를 통해 멤버 함수를 호출할 수 있습니다.
-    // (__.klass 는 이 class 에서 할당된 this 를 가리키도록 되어있습니다.)
+    // (__.klass 는 현재 class의 this를 가리키도록 되어있습니다.)
     // __.params = __.klass.${resource}_params(req);
     
     render(\`\${__.klass.resource_name}/index\`, req, res, __)
@@ -31,7 +31,7 @@ class ${name}Controller extends Controller {
   
   // GET /${resource}/new.html
   new(req, res) {
-    render(\`\${__.klass.resource_name}/index\`, req, res, __)
+    render(\`\${__.klass.resource_name}/new\`, req, res, __)
   }
 
   // GET /${resource}/1.html
@@ -71,7 +71,7 @@ class ${name}Controller extends Controller {
 }
 
 let controller = new ${name}Controller();
-module.exports = controller.exports(__)
+module.exports = controller.exports(__);
 `;
 }
 

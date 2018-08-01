@@ -9,8 +9,18 @@ class Controller {
     this.resource_name = path.basename(filename).replace(/\..+$/, '');
   }
 
+  before_action(){
+    //
+  }
+
   exports(__) {
-    return __.klass = this;
+    __.title = this.resource_name;
+    __.klass = this;
+    return this;
+  }
+
+  to_h() {
+    return JSON.parse(JSON.stringify(this))
   }
 }
 
