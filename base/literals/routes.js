@@ -1,6 +1,8 @@
+let string_ = require('../helpers/string');
+
 function literal(resource) {
   return `
-/// ${resource.toUpperCase()} ROUTES ///
+/// ${string_.denormalizer(resource)} ROUTES ///
 
 router.get('/${resource}', ${resource}_controller.index);
 router.get('/${resource}/new', ${resource}_controller.new);

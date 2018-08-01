@@ -1,14 +1,18 @@
+let string_ = require('../helpers/string');
+
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
 function literal(resource) {
+  const name = string_.denormalizer(resource);
+
   return `
 let [Controller, render, __] = require('../core/controller');
 let [Model, ${resource}] = require('../models/${resource}');
 
 
-class ${resource.capitalize()}Controller extends Controller {
+class ${name}Controller extends Controller {
   constructor() { super(__filename) }
   
   // GET /${resource}.html
@@ -66,7 +70,7 @@ class ${resource.capitalize()}Controller extends Controller {
   }
 }
 
-let controller = new ${resource.capitalize()}Controller();
+let controller = new ${name}Controller();
 module.exports = controller.exports(__)
 `;
 }

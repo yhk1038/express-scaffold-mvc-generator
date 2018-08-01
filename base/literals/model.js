@@ -1,15 +1,17 @@
-function literal(resource) {
-  return `
-let Model = require('../core/model');
+let string_ = require('../helpers/string');
 
-class ${resource} extends Model {
+function literal(resource) {
+  const name = string_.denormalizer(resource);
+  return `let Model = require('../core/model');
+
+class ${name} extends Model {
   constructor(){
     super()
   }
 }
 
-module.exports = [ Model, ${resource} ]
-  `
+module.exports = [ Model, ${name} ]
+`
 }
 
 module.exports = literal

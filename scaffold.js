@@ -1,30 +1,30 @@
 let fs = require('fs');
 let path = require('path');
 let cmd = require('node-cmd');
+
+// Helpers
 let log = require('./base/helpers/envlog');
+let makefile = require('./base/helpers/makefile');
+let string_ = require('./base/helpers/string');
 
 let scaffold = function(res) {
+  // validate resource
+  if (!res) {
+    throw console.error("resource not defined. "+res+")");
+  }
 
   /// STEP 1. Start: Load libraries and paths ///
 
   log("\n");
   log("# Start: Load libraries and paths");
-
-  let makefile = require('./base/core/makefile');
-  log('1. Check function load ~>', typeof makefile === 'function');
+  log('1. Check helpers load ~>', typeof log === 'function', typeof makefile === 'function');
 
   const rootpath = process.env.PWD; // TODO: Need to change stable path wherever running command.
   const pkgpath = __dirname;
-  let resource = res; // TODO: Need argument filter and normalizer (e.g. downcase, snakecase, pluralize)
+  let resource = string_.normalizer(res);
   log('2. Check app project rootpath ~>', rootpath);
   log('3. Check pkg project rootpath ~>', pkgpath);
   log('4. Check argumented resource name ~>', resource);
-
-
-  // validate resource
-  if (!resource) {
-    throw console.error("resource not defined. "+resource+")");
-  }
 
   let invoke_callback = function(err, inputs) {
     console.log('invoke', inputs.path.replace(rootpath, '').replace(/\//, "\t\t"));

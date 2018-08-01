@@ -1,6 +1,6 @@
 {
   "name": "express-scaffold-mvc-generator",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Express scaffold MVC generator",
   "main": "./scaffold.js",
   "scripts": {
@@ -10,7 +10,10 @@
     "express",
     "scaffold",
     "mvc",
-    "generator"
+    "generator",
+    "model",
+    "view",
+    "controller"
   ],
   "author": "freddy-kim",
   "engines": {
@@ -31,7 +34,8 @@
     "commander": "^2.16.0",
     "fs": "0.0.1-security",
     "node-cmd": "^3.0.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "pluralize": "^7.0.0"
   },
   "license": "MIT",
   "bin": {
