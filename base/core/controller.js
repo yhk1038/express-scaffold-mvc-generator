@@ -1,27 +1,11 @@
-let fs = require('fs');
-let path = require('path');
-
-let [render, __] = require('./renderer');
-
-class Controller {
-  constructor(filename){
-    this.controllers_name = this.constructor.name
-    this.resource_name = path.basename(filename).replace(/\..+$/, '');
-  }
-
-  before_action(){
-    //
-  }
-
-  exports(__) {
-    __.title = this.resource_name;
-    __.klass = this;
-    return this;
-  }
-
-  to_h() {
-    return JSON.parse(JSON.stringify(this))
-  }
-}
-
-module.exports = [Controller, render, __]
+/**
+ * // If you want to make your own parent controller, use this:
+ * 
+ * let [BaseController, render, __] = require('express-scaffold-mvc-base').controller;
+ * class Controller extends BaseController {
+ *    // your own parent controller codes ...
+ * }
+ * 
+ * module.exports = [Controller, render, __]
+ */
+module.exports = require('express-scaffold-mvc-base').controller;

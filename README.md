@@ -1,9 +1,25 @@
 # Express Scaffold MVC Generator
 
+## Before Beginning
+- Assume 1. Your project had been started with 'Express' and 'Express Generator'.
+```
+$ express YOUR_PRJ
+```
+
+- Assume 2. Your project uses 'ejs' and 'ejs-layout'. (In `app.js`, add this code just below your `var app = express();`)
+```javascript
+// view engine setup for 'EJS'
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.set('layout', 'layout');
+app.set("layout extractScripts", true);
+app.use(expressLayouts);
+```
+
 ## Install
 
 ```
-npm install express-scaffold-mvc-generator -g --save
+$ npm install express-scaffold-mvc-generator -g --save && npm link
 ```
 
 Note the `-g` and `--save` options. You can use cli interface when it was global installed only.
@@ -11,8 +27,11 @@ Note the `-g` and `--save` options. You can use cli interface when it was global
 ## To use
 
 ```
-# => express:scaffold [options] <resource>
+$ express:scaffold [options] <resource>
+```
 
+For example:
+```
 $ express:scaffold posts
 
 invoke          routes/routes.js
@@ -81,7 +100,7 @@ class PostsController extends Controller {
 
   // GET /posts/new.html
   new(req, res) {
-    render(`${__.klass.resource_name}/index`, req, res, __)
+    render(`${__.klass.resource_name}/new`, req, res, __)
   }
 
   // GET /posts/1.html
