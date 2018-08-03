@@ -25,3 +25,6 @@ module.exports.denormalizer = function denormalizer(str) {
       return char.split('').map((c, j) => j === 0 ? c.toUpperCase() : c).join('')
     }).join('');
 }
+module.exports.singularizer = function singularizer(str) {
+  return pluralize.singular(normalizer(str));
+}
