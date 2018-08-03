@@ -61,7 +61,12 @@ class ${name}Controller extends Controller {
   // POST /${resource}.html
   // POST /${resource}.json
   create(req, res) {
-    redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}\`);
+
+    if (__.klass.parse_format(req) === 'json') {
+      redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}.json\`);
+    } else {
+      redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}\`);
+    }
   }
 
   // GET /${resource}/1/edit.html
@@ -72,13 +77,23 @@ class ${name}Controller extends Controller {
   // POST /${resource}/1.html
   // POST /${resource}/1.json
   update(req, res) {
-    redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}\`);
+
+    if (__.klass.parse_format(req) === 'json') {
+      redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}.json\`);
+    } else {
+      redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}\`);
+    }
   }
 
   // POST /${resource}/1/delete.html
   // POST /${resource}/1/delete.json
   delete(req, res) {
-    redirect(\`/\${__.klass.resource_name}\`);
+    
+    if (__.klass.parse_format(req) === 'json') {
+      redirect(\`/\${__.klass.resource_name}.json\`);
+    } else {
+      redirect(\`/\${__.klass.resource_name}\`);
+    }
   }
 
   
