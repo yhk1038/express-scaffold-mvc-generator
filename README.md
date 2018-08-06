@@ -1,29 +1,27 @@
+
+
+
+
 # Express Scaffold MVC Generator
 
-## Before Beginning
-- Assume 1. Your project had been started with 'Express' and 'Express Generator'.
-```
-$ express YOUR_PRJ
-```
 
-- Assume 2. Your project uses 'ejs' and 'ejs-layout'. (In `app.js`, add this code just below your `var app = express();`)
-```javascript
-// view engine setup for 'EJS'
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-app.set('layout', 'layout');
-app.set("layout extractScripts", true);
-app.use(expressLayouts);
-```
+
 
 ## Install
-
-```
+```bash
 $ npm install express-scaffold-mvc-generator -g --save && npm link
+
+$ express prj
+$ cd prj
+$ npm install
+
 $ express:scaffold install
 ```
 
-Note the `-g` and `--save` options. You can use cli interface when it was global installed only.
+## Checkout the details
+
+- [Installation](https://github.com/yhk1038/express-scaffold-mvc-generator/blob/master/docs/Installation.md)
+- [Initial Setting](https://github.com/yhk1038/express-scaffold-mvc-generator/blob/docs/Setting.md)
 
 ## To use
 
