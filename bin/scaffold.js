@@ -10,7 +10,8 @@ commander
             'express-scaffold-mvc-base' // core base classes of Model, Controller, View
         ];
         let dependencies = [
-            'ejs', 'express-ejs-layouts' // default template engine ~> ejs
+            'ejs', 'express-ejs-layouts', // default template engine ~> ejs
+            'pluralize'
         ];
 
         for(var i in core_dependencies) {
@@ -19,10 +20,10 @@ commander
         }
 
         if (resource === 'install' || resource == 'I') {
-            cmd.run(`npm i -S ${dependencies.join(' ')}`);
+            cmd.run(`npm i -g -S pluralize && npm i -S ${dependencies.join(' ')}`);
         }
         else if (resource === 'update' || resource == 'U') {
-            cmd.run(`npm i express-scaffold-mvc-generator -g -S && npm i -S ${core_dependencies.join(' ')}`);
+            cmd.run(`npm i -g -S express-scaffold-mvc-generator pluralize && npm i -S ${core_dependencies.join(' ')}`);
         }
         
         else {

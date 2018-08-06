@@ -63,9 +63,9 @@ class ${name}Controller extends Controller {
   create(req, res) {
 
     if (__.klass.parse_format(req) === 'json') {
-      redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}.json\`);
+      redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}.json\`, req, res);
     } else {
-      redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}\`);
+      redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}\`, req, res);
     }
   }
 
@@ -79,9 +79,9 @@ class ${name}Controller extends Controller {
   update(req, res) {
 
     if (__.klass.parse_format(req) === 'json') {
-      redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}.json\`);
+      redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}.json\`, req, res);
     } else {
-      redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}\`);
+      redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}\`, req, res);
     }
   }
 
@@ -90,9 +90,9 @@ class ${name}Controller extends Controller {
   delete(req, res) {
     
     if (__.klass.parse_format(req) === 'json') {
-      redirect(\`/\${__.klass.resource_name}.json\`);
+      redirect(\`/\${__.klass.resource_name}.json\`, req, res);
     } else {
-      redirect(\`/\${__.klass.resource_name}\`);
+      redirect(\`/\${__.klass.resource_name}\`, req, res);
     }
   }
 

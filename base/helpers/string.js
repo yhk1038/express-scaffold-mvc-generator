@@ -16,15 +16,21 @@ String.prototype.to_snakecase = function () {
   })
 }
 
-module.exports.normalizer = function normalizer(str) {
+let normalizer = function (str) {
   return pluralize.plural(str.trim().to_snakecase()).replace(' ', '_').replace('__', '_')
 }
-module.exports.denormalizer = function denormalizer(str) {
+
+let denormalizer = function (str) {
   return pluralize.singular(str.trim())
     .replace('_', ' ').split(' ').map((char, i) => {
       return char.split('').map((c, j) => j === 0 ? c.toUpperCase() : c).join('')
     }).join('');
 }
-module.exports.singularizer = function singularizer(str) {
+
+let singularizer = function (str) {
   return pluralize.singular(normalizer(str));
 }
+
+module.exports.normalizer = normalizer
+module.exports.denormalizer = denormalizer
+module.exports.singularizer = singularizer
