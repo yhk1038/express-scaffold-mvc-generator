@@ -1,11 +1,4 @@
-
-
-
-
 # Express Scaffold MVC Generator
-
-
-
 
 ## Install
 ```bash
@@ -26,39 +19,39 @@ $ express:scaffold install
 ## To use
 
 ```
-$ express:scaffold [options] <resource>
+$ express:scaffold <actions> <resource...> [options]
 ```
 
 For example:
 ```
-$ express:scaffold posts
+$ express:scaffold g|generate posts
 
 invoke          routes/routes.js
-invoke          controllers/posts.js
-invoke          models/posts.js
-invoke          views/posts/index.ejs
-invoke          views/posts/new.ejs
-invoke          views/posts/show.ejs
-invoke          views/posts/edit.ejs
-invoke          views/posts/_form.ejs
-invoke          views/posts/components/item.ejs
+create          controllers/posts.js
+create          models/posts.js
+create          views/posts/index.ejs
+create          views/posts/new.ejs
+create          views/posts/show.ejs
+create          views/posts/edit.ejs
+create          views/posts/_form.ejs
+create          views/posts/components/item.ejs
 
 ```
 
 ### It generates Router & M & V & C about resource
-e.g. `$ express:scaffold posts`
+e.g. `$ express:scaffold g posts`
 
 **[Router] routes/routes.js**
 ```javascript
 const posts_controller = require('../controllers/posts');
 
-router.get('/posts', posts_controller.index);
-router.get('/posts/new', posts_controller.new);
-router.get('/posts/:id', posts_controller.show);
-router.post('/posts', posts_controller.create);
-router.get('/posts/:id/edit', posts_controller.edit);
-router.post('/posts/:id', posts_controller.update);
-router.post('/posts/:id/delete', posts_controller.delete);
+router.get('/posts.:format?', posts_controller.index);
+router.get('/posts/new.:format?', posts_controller.new);
+router.get('/posts/:id.:format?', posts_controller.show);
+router.post('/posts.:format?', posts_controller.create);
+router.get('/posts/:id/edit.:format?', posts_controller.edit);
+router.post('/posts/:id.:format?', posts_controller.update);
+router.post('/posts/:id/delete.:format?', posts_controller.delete);
 ```
 
 **[Model] models/posts.js**

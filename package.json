@@ -1,10 +1,11 @@
 {
   "name": "express-scaffold-mvc-generator",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Express scaffold MVC generator",
-  "main": "./scaffold.js",
+  "main": "./generate.js",
   "scripts": {
-    "test": "node scaffold.js posts"
+    "up": "npm publish --access=public",
+    "test": "node generate.js posts"
   },
   "keywords": [
     "express",
@@ -31,7 +32,7 @@
     "mocha": "^5.2.0"
   },
   "dependencies": {
-    "commander": "^2.17.0",
+    "commander": "^2.17.1",
     "express-scaffold-mvc-base": "^0.4.0",
     "fs": "0.0.2",
     "node-cmd": "^3.0.0",
@@ -40,6 +41,6 @@
   },
   "license": "MIT",
   "bin": {
-    "express:scaffold": "bin/scaffold.js"
+    "express:scaffold": "bin/cli.js"
   }
 }
