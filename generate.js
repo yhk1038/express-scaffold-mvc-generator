@@ -7,34 +7,54 @@ let log = require('./base/helpers/envlog');
 let makefile = require('./base/helpers/makefile');
 let string_ = require('./base/helpers/string');
 
-module.exports = function(res, next) {
+module.exports = function(res, next, options) {
+  let createTask = {
+    model: true,
+    controller: true,
+    view: true,
+    route: true
+  }
+
+  // set literal path
+  let literals = {
+    router_file: './base/literals/routes-file',
+    controller: './base/literals/controller',
+    model: './base/literals/model',
+    router: './base/literals/routes'
+  }
   
-    // validate resource
-    if (!res) {
-      throw console.error("resource not defined. ("+res+")");
-    }
+  if (options.api) {
+    literals.controller = './base/literals/api/controller';
+    literals.router = './base/literals/api/routes';
+    createTask.view = false;
+  }
 
-    /// STEP 1. Start: Load libraries and paths ///
+  // validate resource
+  if (!res) {
+    throw console.error("resource not defined. ("+res+")");
+  }
 
-    log("\n");
-    log("# Start: Load libraries and paths");
-    log('1. Check helpers load ~>', typeof log === 'function', typeof makefile === 'function');
+  /// STEP 1. Start: Load libraries and paths ///
 
-    const rootpath = process.env.PWD; // TODO: Need to change stable path wherever running command.
-    const pkgpath = __dirname;
-    let resource = string_.normalizer(res);
-    log('2. Check app project rootpath ~>', rootpath);
-    log('3. Check pkg project rootpath ~>', pkgpath);
-    log('4. Check argumented resource name ~>', resource);
+  log("\n");
+  log("# Start: Load libraries and paths");
+  log('1. Check helpers load ~>', typeof log === 'function', typeof makefile === 'function');
 
-    let invoke_callback = function(err, inputs) {
-      console.log('invoke', inputs.path.replace(rootpath, '').replace(/\//, "\t\t"));
-    }
+  const rootpath = process.env.PWD; // TODO: Need to change stable path wherever running command.
+  const pkgpath = __dirname;
+  let resource = string_.normalizer(res);
+  log('2. Check app project rootpath ~>', rootpath);
+  log('3. Check pkg project rootpath ~>', pkgpath);
+  log('4. Check argumented resource name ~>', resource);
+
+  let invoke_callback = function(err, inputs) {
+    console.log('invoke', inputs.path.replace(rootpath, '').replace(/\//, "\t\t"));
+  }
 
 
-
-    /// STEP 2. Generate Necessary files ///
-
+  /// STEP 2. Generate Necessary files ///
+  if (Object.values(createTask).includes(true)) {
+    
     log("\n");
     log("# Generate Necessary files");
 
@@ -50,7 +70,7 @@ module.exports = function(res, next) {
     let routerpath = path.join(rootpath, 'routes', 'routes.js');
     fs.access(routerpath, (err) => {
       if(err && (err.errno === -2 || err.errno === 34)) {
-        makefile(routerpath, require('./base/literals/routes-file'), invoke_callback);
+        makefile(routerpath, require(literals.router_file), invoke_callback);
       };
     });
 
@@ -59,12 +79,12 @@ module.exports = function(res, next) {
     fs.mkdir(view_dirpath, (err) => {
         log(err);
     });
+  }
+  
 
-
-
-
-    /// STEP 3. Generate Controller file ///
-
+  /// STEP 3. Generate Controller file ///
+  if (createTask.controller) {
+    
     log("\n");
     log("# Generate Controller file");
 
@@ -72,16 +92,18 @@ module.exports = function(res, next) {
 
     const controller_filename = `${resource}.js`;
     const controller_filepath = path.join(rootpath, 'controllers', controller_filename);
-    const controller_literal = require('./base/literals/controller')(resource);
+    const controller_literal = require(literals.controller)(resource);
     makefile(controller_filepath, controller_literal, invoke_callback);
     log('1. Check "controller_filename" ~>', controller_filename);
     log('2. Check "controller_filepath" ~>', controller_filepath);
     log('3. Check "controller_literal" ~>', typeof controller_literal === 'string');
+  }
+  
 
 
-
-    /// STEP 4. Generate Model file ///
-
+  /// STEP 4. Generate Model file ///
+  if (createTask.model) {
+  
     log("\n");
     log("# Generate Model file");
 
@@ -89,15 +111,16 @@ module.exports = function(res, next) {
 
     const model_filename = `${resource}.js`;
     const model_filepath = path.join(rootpath, 'models', model_filename);
-    const model_literal = require('./base/literals/model')(resource);
+    const model_literal = require(literals.model)(resource);
     makefile(model_filepath, model_literal, invoke_callback);
     log('1. Check "model_filename" ~>', model_filename);
     log('2. Check "model_filepath" ~>', model_filepath);
     log('3. Check "model_literal" ~>', typeof model_literal === 'string');
+  }
 
 
-
-    /// STEP 5. Generate View file ///
+  /// STEP 5. Generate View file ///
+  if (createTask.view) {
 
     log("\n");
     log("# Generate View file");
@@ -127,11 +150,11 @@ module.exports = function(res, next) {
     viewfiles.forEach(viewfile => {
       makeViewFile(viewfile);
     })
+  }
 
 
-
-    /// STEP 6. Generate Routes ///
-
+  /// STEP 6. Generate Routes ///
+  if (createTask.route) {
     log("\n");
     log("# Generate Routes");
 
@@ -141,7 +164,7 @@ module.exports = function(res, next) {
       fs.readFile(routerpath, 'utf8', function(err, data) {
 
         let import_controller_literal = `const ${resource}_controller = require('../controllers/${resource}');`
-        let route_literal = require('./base/literals/routes')(resource);
+        let route_literal = require(literals.router)(resource);
 
         data = data.replace("\n\n"+route_literal, '');
         data = data.replace(import_controller_literal, '');
@@ -176,5 +199,9 @@ module.exports = function(res, next) {
         insertRouter(routerpath);
       })
     }
+  }
+  else {
+    next();
+  }
   
 }

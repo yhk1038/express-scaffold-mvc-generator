@@ -54,8 +54,9 @@ program
     .alias('g')
     .description('run creating resource by scaffolds')
     .action(function(resources, options) {
+        console.log(options.parent.api)
         resources.forEach2(function(resource, next) {
-            require('../generate')(resource, next);
+            require('../generate')(resource, next, options.parent);
         });
     });
 
