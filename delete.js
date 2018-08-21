@@ -14,6 +14,7 @@ module.exports = function(res, next, options) {
   if (!res) {
     throw console.error("resource not defined. ("+res+")");
   }
+  res = string_.normalizer(res);
 
   let literals = {
     router: './base/literals/routes'
