@@ -42,6 +42,9 @@ module.exports = function(res, next, options) {
 
   const rootpath = process.env.PWD; // TODO: Need to change stable path wherever running command.
   const pkgpath = __dirname;
+  const routerpath = path.join(rootpath, 'routes', 'routes.js');
+  const view_dirpath = path.join(rootpath, 'views');
+
   let resource = string_.normalizer(res);
   log('2. Check app project rootpath ~>', rootpath);
   log('3. Check pkg project rootpath ~>', pkgpath);
@@ -67,7 +70,6 @@ module.exports = function(res, next, options) {
     });
 
     // [File] routes.js
-    let routerpath = path.join(rootpath, 'routes', 'routes.js');
     fs.access(routerpath, (err) => {
       if(err && (err.errno === -2 || err.errno === 34)) {
         makefile(routerpath, require(literals.router_file), invoke_callback);
@@ -75,10 +77,11 @@ module.exports = function(res, next, options) {
     });
 
     // [Dir] views/
-    let view_dirpath = path.join(rootpath, 'views');
-    fs.mkdir(view_dirpath, (err) => {
+    if (createTask.view) {
+      fs.mkdir(view_dirpath, (err) => {
         log(err);
-    });
+      });
+    }
   }
   
 
