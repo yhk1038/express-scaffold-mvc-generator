@@ -26,51 +26,31 @@ class ${name}Controller extends Controller {
   index(req, res) {
     __.${resource} = ${name}.all();
     
-    if (__.klass.parse_format(req) === 'json') {
-      render('json', req, res, __.${resource});  
-    } else {
-      render(\`\${__.klass.resource_name}/index\`, req, res, __);
-    }
+    render('json', req, res, __.${resource});
   }
 
   // GET /${resource}/1
   show(req, res) {
     
-    if (__.klass.parse_format(req) === 'json') {
-      render('json', req, res, __.${objname});
-    } else {
-      render(\`\${__.klass.resource_name}/show\`, req, res, __);
-    } 
+    render('json', req, res, __.${objname});
   }
 
   // POST /${resource}
   create(req, res) {
 
-    if (__.klass.parse_format(req) === 'json') {
-      redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}.json\`, req, res);
-    } else {
-      redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}\`, req, res);
-    }
+    redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}\`, req, res);
   }
 
   // POST /${resource}/1
   update(req, res) {
 
-    if (__.klass.parse_format(req) === 'json') {
-      redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}.json\`, req, res);
-    } else {
-      redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}\`, req, res);
-    }
+    redirect(\`/\${__.klass.resource_name}/\${__.${objname}.id}\`, req, res);
   }
 
   // POST /${resource}/1/delete
   delete(req, res) {
     
-    if (__.klass.parse_format(req) === 'json') {
-      redirect(\`/\${__.klass.resource_name}.json\`, req, res);
-    } else {
-      redirect(\`/\${__.klass.resource_name}\`, req, res);
-    }
+    redirect(\`/\${__.klass.resource_name}\`, req, res);
   }
 
   
