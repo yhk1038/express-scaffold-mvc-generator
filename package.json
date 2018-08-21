@@ -1,6 +1,6 @@
 {
   "name": "express-scaffold-mvc-generator",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Express scaffold MVC generator",
   "main": "./generate.js",
   "scripts": {

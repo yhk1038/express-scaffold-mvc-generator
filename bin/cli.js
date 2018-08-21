@@ -67,7 +67,7 @@ program
     .description('run deleting scaffolded resource')
     .action(function(resources, options) {
         resources.forEach2(function(resource, next) {
-            require('../delete')(resource, next);
+            require('../delete')(resource, next, options.parent);
         });
     });
 
