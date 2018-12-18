@@ -1,6 +1,6 @@
 {
   "name": "express-scaffold-mvc-generator",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "description": "Express scaffold MVC generator",
   "main": "./generate.js",
   "scripts": {
@@ -28,12 +28,12 @@
     "url": "https://github.com/yhk1038/express-scaffold-mvc-generator/issues"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
+    "chai": "^4.2.0",
     "mocha": "^5.2.0"
   },
   "dependencies": {
-    "commander": "^2.17.1",
-    "express-scaffold-mvc-base": "^0.4.0",
+    "commander": "^2.19.0",
+    "express-scaffold-mvc-base": "^0.5.2",
     "fs": "0.0.2",
     "node-cmd": "^3.0.0",
     "path": "^0.12.7",
