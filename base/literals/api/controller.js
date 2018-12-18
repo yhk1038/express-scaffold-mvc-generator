@@ -1,4 +1,4 @@
-let string_ = require('../../helpers/string');
+const string_ = require('../../helpers/string');
 
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
@@ -9,9 +9,9 @@ function literal(resource) {
   const objname = string_.singularizer(resource); // model instance object name
 
   return `
-let [Controller, renderer, __] = require('../core/controller');
-let [render, redirect] = renderer.call;
-let [Model, ${name}] = require('../models/${resource}');
+const [Controller, renderer, __] = require('../core/controller');
+const [render, redirect] = renderer.call;
+const [Model, ${name}] = require('../models/${resource}');
 
 
 class ${name}Controller extends Controller {
@@ -65,7 +65,7 @@ class ${name}Controller extends Controller {
   }
 }
 
-let controller = new ${name}Controller();
+const controller = new ${name}Controller();
 module.exports = controller.exports(__);
 `;
 }

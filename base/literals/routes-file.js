@@ -1,13 +1,13 @@
 function literal() {
   return `// DO NOT DELETE COMMENTS!!
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 // Require controller modules
 
 
 
-module.exports = router
+module.exports = router;
 `
 }
 

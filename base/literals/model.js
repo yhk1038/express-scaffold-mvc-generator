@@ -1,8 +1,8 @@
-let string_ = require('../helpers/string');
+const string_ = require('../helpers/string');
 
 function literal(resource) {
   const name = string_.denormalizer(resource);
-  return `let Model = require('../core/model');
+  return `const Model = require('../core/model');
 
 class ${name} extends Model {
   constructor(){

@@ -1,13 +1,13 @@
-let fs = require('fs');
-let path = require('path');
-let cmd = require('node-cmd');
+const fs = require('fs');
+const path = require('path');
+const cmd = require('node-cmd');
 
 // Helpers
-let log = require('./base/helpers/envlog');
-let makefile = require('./base/helpers/makefile');
-let string_ = require('./base/helpers/string');
+const log = require('./base/helpers/envlog');
+const makefile = require('./base/helpers/makefile');
+const string_ = require('./base/helpers/string');
 
-let delete_if_the_file_exists = require('./helpers/delete_if_the_file_exists');
+const delete_if_the_file_exists = require('./helpers/delete_if_the_file_exists');
 
 module.exports = function(res, next, options) {
   // validate resource

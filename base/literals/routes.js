@@ -1,4 +1,4 @@
-let string_ = require('../helpers/string');
+const string_ = require('../helpers/string');
 
 function literal(resource) {
   return `

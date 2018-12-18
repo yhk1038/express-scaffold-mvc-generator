@@ -1,7 +1,8 @@
 /**
  * // If you want to make your own parent controller, use this:
  * 
- * let [BaseController, renderer, __] = require('express-scaffold-mvc-base').controller;
+ * const [BaseController, renderer, __] = require('express-scaffold-mvc-base').controller;
+ * 
  * class Controller extends BaseController {
  *    // your own parent controller codes ...
  * }

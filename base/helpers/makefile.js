@@ -1,7 +1,7 @@
-let fs = require('fs');
-let path = require('path');
+const fs = require('fs');
+const path = require('path');
 
-let checkDirectory = function (directory, callback) {
+const checkDirectory = function (directory, callback) {
   fs.stat(directory, function(err, stats) {
     //Check if error defined and the error code is "not exists"
     if (err && err.errno === 34) {
@@ -13,14 +13,16 @@ let checkDirectory = function (directory, callback) {
     }
   });
 }
-let checkDirectorySync = function (directory) {
+
+const checkDirectorySync = function (directory) {
   try {
     fs.statSync(directory);
   } catch(e) {
     fs.mkdirSync(directory);
   }
 }
-let makefile = function (filepath, data, callback) {
+
+const makefile = function (filepath, data, callback) {
   checkDirectorySync(path.dirname(filepath));
   fs.writeFile(filepath, data,
     function (err) {

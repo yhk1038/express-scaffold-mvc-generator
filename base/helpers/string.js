@@ -1,4 +1,4 @@
-let pluralize = require('pluralize');
+const pluralize = require('pluralize');
 
 String.prototype.to_capitalize = function () {
   return this.trim().split('')
@@ -16,21 +16,21 @@ String.prototype.to_snakecase = function () {
   })
 }
 
-let normalizer = function (str) {
+const normalizer = function (str) {
   return pluralize.plural(str.trim().to_snakecase()).replace(' ', '_').replace('__', '_')
 }
 
-let denormalizer = function (str) {
+const denormalizer = function (str) {
   return pluralize.singular(str.trim())
     .replace('_', ' ').split(' ').map((char, i) => {
       return char.split('').map((c, j) => j === 0 ? c.toUpperCase() : c).join('')
     }).join('');
 }
 
-let singularizer = function (str) {
+const singularizer = function (str) {
   return pluralize.singular(normalizer(str));
 }
 
-module.exports.normalizer = normalizer
-module.exports.denormalizer = denormalizer
-module.exports.singularizer = singularizer
+module.exports.normalizer = normalizer;
+module.exports.denormalizer = denormalizer;
+module.exports.singularizer = singularizer;

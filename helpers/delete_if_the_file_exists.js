@@ -1,9 +1,9 @@
-let fs = require('fs');
-let path = require('path');
+const fs = require('fs');
+const path = require('path');
 
 
 function delete_empty_directory(filepath) {
-  let dirpath = path.dirname(filepath);
+  const dirpath = path.dirname(filepath);
   if (fs.readdirSync(dirpath).length === 0) {
     fs.rmdirSync(dirpath);
   }
@@ -49,4 +49,4 @@ function delete_if_the_file_exists(filepath) {
   }
 }
 
-module.exports = delete_if_the_file_exists
+module.exports = delete_if_the_file_exists;
