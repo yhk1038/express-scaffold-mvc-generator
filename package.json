@@ -1,6 +1,6 @@
 {
   "name": "express-scaffold-mvc-generator",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "description": "Express scaffold MVC generator",
   "main": "./generate.js",
   "scripts": {
@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "commander": "^2.19.0",
-    "express-scaffold-mvc-base": "^0.5.2",
+    "express-scaffold-mvc-base": "^0.5.4",
     "fs": "0.0.2",
     "node-cmd": "^3.0.0",
     "path": "^0.12.7",
